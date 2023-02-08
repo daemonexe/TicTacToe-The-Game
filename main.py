@@ -1,10 +1,16 @@
 from tkinter import *
 from tkinter import PhotoImage
 
-def main():
+MultiplayerCount = 1
+
+def __main__():
+    global MultiplayerCount
     window = Tk()
     window.title('TicTacToe - The Game')
     window.resizable(height= False, width= False)
+
+    totalMultiplayer = 0
+
     # Pages :
     main_menu = Frame(window)
     single_player  = Frame(window)
@@ -28,6 +34,8 @@ def main():
     singlePlayerImage = PhotoImage(file = 'single_player_imgs/single_player_background.png')
     backButtonImage = PhotoImage(file= 'single_player_imgs/backButtonImage.png')
     tile_image = PhotoImage(file = 'single_player_imgs/x_x.png')
+    x_image = PhotoImage(file = 'single_player_imgs/x_move.png')
+    o_image = PhotoImage(file= 'single_player_imgs/o_move.png')
 
     # Lables
     background_main_menu = Label(main_menu,image = main_menu_image, bd = 0, bg = 'black')
@@ -55,20 +63,32 @@ def main():
     background_slngle_playeru = Label(single_player,image = singlePlayerImage, bd = 0, bg = 'black')
     backButton = Label(single_player, image = backButtonImage,bd = 0,bg = 'black')
 
-    tile1 = Label(single_player, image= tile_image,bd= 0)
-    tile2 = Label(single_player, image= tile_image,bd= 0)
-    tile3 = Label(single_player, image= tile_image,bd= 0)
-    tile4 = Label(single_player, image= tile_image,bd= 0)
-    tile5 = Label(single_player, image= tile_image,bd= 0)
-    tile6 = Label(single_player, image= tile_image,bd= 0)
-    tile7 = Label(single_player, image= tile_image,bd= 0)
-    tile8 = Label(single_player, image= tile_image,bd= 0)
-    tile9 = Label(single_player, image= tile_image,bd= 0)
+    def button_click(button):
+        pass
+
+    tile1 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile1))
+    tile2 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile2))
+    tile3 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile3))
+    tile4 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile4))
+    tile5 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile5))
+    tile6 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile6))
+    tile7 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile7))
+    tile8 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile8))
+    tile9 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile9))
 
 
     # functions
     def backButtonPressed(back):
         switch_page(main_menu)
+        tile1.config(image= tile_image)
+        tile2.config(image= tile_image)
+        tile3.config(image= tile_image)
+        tile4.config(image= tile_image)
+        tile5.config(image= tile_image)
+        tile6.config(image= tile_image)
+        tile7.config(image= tile_image)
+        tile8.config(image= tile_image)
+        tile9.config(image= tile_image)
 
     background_slngle_playeru.grid(rowspan=100,columnspan=100)
     backButton.grid(row = 0,column=0)
@@ -85,26 +105,60 @@ def main():
     tile9.grid(row=44, column=52, columnspan=35, rowspan=42)
 
     # ----------------- MULTIPLAYER -----------------
+    playerXTurn = PhotoImage(file ='multi_player_image/playerXTurn.png')
+    playerOTurn = PhotoImage(file ='multi_player_image/playerOTurn.png')
+    refreshIconMultiplayer = PhotoImage(file = 'single_player_imgs/refresh_icon.png')
 
-    background_multiplayer = Label(multi_player, image=singlePlayerImage, bd=0, bg='black')
+    background_multiplayer = Label(multi_player, image=playerXTurn, bd=0, bg='black')
     backButton = Label(multi_player, image=backButtonImage, bd=0, bg='black')
+    refreshbutton = Label(multi_player, image=refreshIconMultiplayer, bd=0, bg='black')
 
-    _tile1 = Label(multi_player, image=tile_image, bd=0)
-    _tile2 = Label(multi_player, image=tile_image, bd=0)
-    _tile3 = Label(multi_player, image=tile_image, bd=0)
-    _tile4 = Label(multi_player, image=tile_image, bd=0)
-    _tile5 = Label(multi_player, image=tile_image, bd=0)
-    _tile6 = Label(multi_player, image=tile_image, bd=0)
-    _tile7 = Label(multi_player, image=tile_image, bd=0)
-    _tile8 = Label(multi_player, image=tile_image, bd=0)
-    _tile9 = Label(multi_player, image=tile_image, bd=0)
+    def multiplayer_input(button):
+        global MultiplayerCount
+        if MultiplayerCount % 2 == 0:
+            button.config(image = o_image)
+            MultiplayerCount += 1
+            background_multiplayer.config(image = playerXTurn)
+        else:
+            button.config(image = x_image)
+            MultiplayerCount += 1
+            background_multiplayer.config(image = playerOTurn)
+
+        x_placed,y_placed = 'pyimage8','pyimage9'
+
+        # WIN OR LOOSE
+        if _tile1['image'] == x_placed and _tile2['image'] == x_placed and _tile3['image'] == x_placed:
+            _tile1.config(bg = '#61f91a')
+            _tile2.config(bg = '#61f91a')
+            _tile3.config(bg = '#61f91a')
+
+    def refreshMultiPlayer(a):
+        _tile1.config(image=tile_image,bg = 'white')
+        _tile2.config(image=tile_image,bg = 'white')
+        _tile3.config(image=tile_image,bg = 'white')
+        _tile4.config(image=tile_image,bg = 'white')
+        _tile5.config(image=tile_image,bg = 'white')
+        _tile6.config(image=tile_image,bg = 'white')
+        _tile7.config(image=tile_image,bg = 'white')
+        _tile8.config(image=tile_image,bg = 'white')
+        _tile9.config(image=tile_image,bg = 'white')
+
+    _tile1 = Button(multi_player, image=tile_image, bd=0, command=lambda: multiplayer_input(_tile1))
+    _tile2 = Button(multi_player, image=tile_image, bd=0, command=lambda: multiplayer_input(_tile2))
+    _tile3 = Button(multi_player, image=tile_image, bd=0, command=lambda: multiplayer_input(_tile3))
+    _tile4 = Button(multi_player, image=tile_image, bd=0, command=lambda: multiplayer_input(_tile4))
+    _tile5 = Button(multi_player, image=tile_image, bd=0, command=lambda: multiplayer_input(_tile5))
+    _tile6 = Button(multi_player, image=tile_image, bd=0, command=lambda: multiplayer_input(_tile6))
+    _tile7 = Button(multi_player, image=tile_image, bd=0, command=lambda: multiplayer_input(_tile7))
+    _tile8 = Button(multi_player, image=tile_image, bd=0, command=lambda: multiplayer_input(_tile8))
+    _tile9 = Button(multi_player, image=tile_image, bd=0, command=lambda: multiplayer_input(_tile9))
 
     # functions
-    def backButtonPressed(back):
-        switch_page(main_menu)
+
 
     background_multiplayer.grid(rowspan=100, columnspan=100)
     backButton.grid(row=0, column=0)
+    refreshbutton.grid(row = 0,columnspan= 16)
     _tile1.grid(row=9, column=13, columnspan=20)
     _tile2.grid(row=9, column=34, columnspan=25)
     _tile3.grid(row=9, column=52, columnspan=35)
@@ -115,13 +169,17 @@ def main():
     _tile8.grid(row=44, column=34, columnspan=25, rowspan=42)
     _tile9.grid(row=44, column=52, columnspan=35, rowspan=42)
 
+
+
+
     exit_button.bind("<Button-1>", pressed_on_exit)
     single_player_button.bind("<Button-1>", single_player_pressed)
     multi_player_button.bind("<Button-1>", multi_player_pressed)
     backButton.bind('<Button-1>',backButtonPressed)
+    refreshbutton.bind('<Button-1>',refreshMultiPlayer)
 
     window.geometry('722x600')
     window.mainloop()
 
 if __name__ == '__main__':
-    main()
+    __main__()
