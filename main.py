@@ -1,7 +1,10 @@
+import random
 from tkinter import *
 from tkinter import PhotoImage
 
 MultiplayerCount = 1
+tiles = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9']
+usedTiles = []
 
 def __main__():
     global MultiplayerCount
@@ -35,7 +38,7 @@ def __main__():
     tile_image = PhotoImage(file ='singlePlayerImages/x_x.png')
     x_image = PhotoImage(file ='singlePlayerImages/x_move.png')
     o_image = PhotoImage(file='singlePlayerImages/o_move.png')
-
+    #empty_image = PhotoImage(file = 'singlePlayerImages/')
     # Lables
     background_main_menu = Label(main_menu,image = main_menu_image, bd = 0, bg = 'black')
     single_player_button = Label(main_menu,image= single_player_button_img,bd = 0,bg = 'black')
@@ -102,20 +105,96 @@ def __main__():
     backButton = Label(single_player, image = backButtonImage,bd = 0,bg = 'black')
 
     def button_click(button):
-        pass
+        global tiles, usedTiles
+        default = 'pyimage7'
 
-    tile1 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile1))
-    tile2 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile2))
-    tile3 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile3))
-    tile4 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile4))
-    tile5 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile5))
-    tile6 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile6))
-    tile7 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile7))
-    tile8 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile8))
-    tile9 = Button(single_player, image= tile_image,bd= 1,command = lambda : button_click(tile9))
+        def AI_move():
+            move = random.choice(tiles)
+            if move == 'tile1' and tile1['image'] == default:
+                tile1.config(image = o_image)
+                tiles.remove(move)
+            elif move == 'tile1':
+                AI_move()
+
+            if move == 'tile2' and tile2['image'] == default:
+                tile2.config(image = o_image)
+                tiles.remove(move)
+            elif move == 'tile2':
+                AI_move()
+
+            if move == 'tile3' and tile3['image'] == default:
+                tile3.config(image = o_image)
+                tiles.remove(move)
+            elif move == 'tile3':
+                AI_move()
+
+
+            if move == 'tile4' and tile4['image'] == default:
+                tile4.config(image = o_image)
+                tiles.remove(move)
+            elif move == 'tile4':
+                AI_move()
+
+
+            if move == 'tile5' and tile2['image'] == default:
+                tile2.config(image = o_image)
+                tiles.remove(move)
+            elif move == 'tile5':
+                AI_move()
+
+
+            if  move == 'tile6' and tile6['image'] == default:
+                tile6.config(image = o_image)
+                tiles.remove(move)
+            elif move == 'tile6':
+                AI_move()
+
+
+            if move == 'tile7' and tile7['image'] == default:
+                tile7.config(image = o_image)
+                tiles.remove(move)
+            elif move == 'tile7':
+                AI_move()
+
+
+            if move == 'tile8' and tile8['image'] == default:
+                tile8.config(image = o_image)
+                tiles.remove(move)
+            elif move == 'tile8':
+                AI_move()
+
+
+            if move == 'tile9' and tile9['image'] == default:
+                tile9.config(image = o_image)
+                tiles.remove(move)
+            elif move == 'tile9':
+                AI_move()
+
+
+
+        if button['image'] == default:
+            button.config(image=x_image)
+
+            AI_move()
+
+
+
+
+
+
+    tile1 = Button(single_player, image= tile_image,bd= 0,command = lambda : button_click(tile1))
+    tile2 = Button(single_player, image= tile_image,bd= 0,command = lambda : button_click(tile2))
+    tile3 = Button(single_player, image= tile_image,bd= 0,command = lambda : button_click(tile3))
+    tile4 = Button(single_player, image= tile_image,bd= 0,command = lambda : button_click(tile4))
+    tile5 = Button(single_player, image= tile_image,bd= 0,command = lambda : button_click(tile5))
+    tile6 = Button(single_player, image= tile_image,bd= 0,command = lambda : button_click(tile6))
+    tile7 = Button(single_player, image= tile_image,bd= 0,command = lambda : button_click(tile7))
+    tile8 = Button(single_player, image= tile_image,bd= 0,command = lambda : button_click(tile8))
+    tile9 = Button(single_player, image= tile_image,bd= 0,command = lambda : button_click(tile9))
 
     # functions
     def backButtonPressed(back):
+        global tiles
         switch_page(main_menu)
         tile1.config(image= tile_image)
         tile2.config(image= tile_image)
@@ -126,6 +205,7 @@ def __main__():
         tile7.config(image= tile_image)
         tile8.config(image= tile_image)
         tile9.config(image= tile_image)
+        tiles = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9']
 
     background_slngle_playeru.grid(rowspan=100,columnspan=100)
     backButton.grid(row = 0,column=0)
