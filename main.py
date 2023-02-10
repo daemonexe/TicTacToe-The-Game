@@ -132,12 +132,18 @@ def __main__():
         tile9.config(image= tile_image,bg = 'white')
 
     def retry_buttonPressed(a):
+        global tiles
         switch_page(single_player)
         clear_tiles()
+        tiles = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9']
 
     def return_to_main_menu(a):
+        global tiles
         switch_page(main_menu)
         clear_tiles()
+        tiles = ['tile1', 'tile2', 'tile3', 'tile4', 'tile5', 'tile6', 'tile7', 'tile8', 'tile9']
+
+
 
     retry_button.bind("<Button-1>", retry_buttonPressed)
     main_menu_button.bind("<Button-1>", return_to_main_menu)
