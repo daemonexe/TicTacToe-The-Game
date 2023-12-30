@@ -3,4 +3,4 @@ A graphical interface made to replicateT of the classic TicTacToe game, includin
 
 # Gameplay
 
-https://github.com/daemonexe/TicTacToe-The-Game/blob/main/ezgif.com-video-to-gif-converter.gif
+![gif](https://github.com/daemonexe/TicTacToe-The-Game/blob/main/ezgif.com-video-to-gif-converter.gif)
