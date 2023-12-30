@@ -1,5 +1,8 @@
 # TicTacToe-The Game (GUI + AI)
 A graphical interface replication of the classic TicTacToe game, including an additional AI algorithm
 
-## Screenshots
-# Main menu 
+# Main Menu
+
+# Single Player
+
+# Multiplayer
